@@ -1,0 +1,80 @@
+# Nov: first redb message from heroku.com
+date: 2021-11-15 15h
+datatype2: content/Nov/test.txt
+
+
+# Dec:
+date: 2022-12-01 01h
+datatype2: content/Dec/msg1.txt
+date: 2022-12-15 15h
+datatype2: content/Dec/msg2.txt
+
+
+# Jan: Happy new year and some text
+date: 2022-01-01 01h
+datatype2: content/Jan/msg1.txt
+date: 2022-01-15 15h
+datatype2: content/Jan/msg2.txt
+
+
+# Feb: some message and maybe Valentine's day
+date: 2022-02-01 01h
+datatype2: content/Feb/msg1.txt
+date: 2022-02-15 15h
+datatype2: content/Feb/msg2.txt
+
+
+# Mar: her birthday
+date: 2022-02-01 01h
+datatype2: content/Mar/msg1.txt
+date: 2022-02-15 15h
+datatype2: content/Mar/msg2.txt
+
+
+# Apr: something except for foolish holiday
+date: 2022-02-01 01h
+datatype2: content/Apr/msg1.txt
+date: 2022-02-15 15h
+datatype2: content/Apr/msg2.txt
+
+
+# May:
+date: 2022-02-01 01h
+datatype2: content/May/msg1.txt
+date: 2022-02-15 15h
+datatype2: content/May/msg2.txt
+
+
+# Jun:
+date: 2022-02-01 01h
+datatype2: content/Jun/msg1.txt
+date: 2022-02-15 15h
+datatype2: content/Jun/msg2.txt
+
+
+# Jul:
+date: 2022-02-01 01h
+datatype2: content/Jul/msg1.txt
+date: 2022-02-15 15h
+datatype2: content/Jul/msg2.txt
+
+
+# Aug:
+date: 2022-02-01 01h
+datatype2: content/Aug/msg1.txt
+date: 2022-02-15 15h
+datatype2: content/Aug/msg2.txt
+
+
+# Sep:
+date: 2022-02-01 01h
+datatype2: content/Sep/msg1.txt
+date: 2022-02-15 15h
+datatype2: content/Sep/msg2.txt
+
+
+# Oct:
+date: 2022-02-01 01h
+datatype2: content/Oct/msg1.txt
+date: 2022-02-15 15h
+datatype2: content/Oct/msg2.txt

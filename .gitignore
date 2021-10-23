@@ -1,0 +1,7 @@
+__pycache__/
+vk_config.*.json
+
+trash.py
+code.py
+file.txt
+token.txt

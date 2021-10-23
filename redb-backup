@@ -1,0 +1,20 @@
+#!/bin/bash
+
+redb_backup()
+{
+  ps -aux | grep 'redb' | grep -q -v 'grep'
+  if [ "$?" -eq 1 ]; then
+    echo ">> restart redb"
+    redb
+  fi
+}
+
+
+iter=0
+while true; do
+  redb_backup
+
+  iter="$(( iter + 1 ))"
+  echo "redb-backup: $iter"
+  sleep 1
+done

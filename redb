@@ -1,0 +1,87 @@
+#!/bin/python3
+
+import os
+import sys
+import time
+import vkcomm   				# my own library
+from schedule import Schedule, SchedDB
+from vk_api.longpoll import VkLongPoll, VkEventType
+from multiprocessing import Process
+import argparse
+
+
+def move_process_to_background():
+    print ("This is the parent PID {}".format(os.getpid()))
+    try:
+        pid = os.fork()
+        if pid > 0:
+            # Exit first parent
+            sys.exit(0)
+    except OSError as e:
+        print("fork #1 failed: {} ({})".format(e.errno, e.strerror), sys.stderr)
+        sys.exit(1)
+
+    print("Detaching from parent environment")
+
+    # Detach from parent environment
+    os.chdir("/")
+    os.setsid()
+    os.umask(0)
+
+    # Do second fork
+    try:
+        pid = os.fork()
+        if pid > 0:
+            # Exit from second parent; print eventual PID before exiting
+            print("Detached Daemon PID {}".format(pid))
+            sys.exit(0)
+    except OSError as e:
+        print("fork #2 failed:{} ({})".format(e.errno, e.strerror), sys.stderr)
+        sys.exit(1)
+
+
+def redb():
+	# session_api = vk_session.get_api()
+	longpoll = VkLongPoll(vkcomm.vk_session)
+
+	# main loop for incoming messages
+	for event in longpoll.listen():
+		if event.type == VkEventType.MESSAGE_NEW:
+			if event.to_me:
+				uid = event.user_id
+				cmd = event.text.lower()
+
+				# debug: output income message
+				print("uid: {uid}: {cmd} ".format(uid=uid, cmd=cmd))
+
+				if (cmd == "redb"):
+					# aware me on all terminal sessions
+					os.system("redb-notif")
+
+					msg = "I made Mr Virm aware about you."
+					vkcomm.reply(uid, msg)
+
+				else:
+					msg = "{cmd}: command not found".format(cmd=cmd)
+					vkcomm.reply(uid, msg)
+					continue
+	return 0
+
+
+if __name__ == "__main__":
+	args = sys.argv
+	if len(args) == 1:
+		print(" run redb itself")
+		redb()
+	elif args[1] == "sched":
+		sched = Schedule("content/schedule.txt")
+		sched.open()
+		sched.run(4)
+		print("error: sched is unexpectetly done")
+	elif args[1] == "db":
+		db = SchedDB("content/db.txt")
+		db.init()
+		print("db is done")
+
+	else:
+		print("error: redb: invalid command -- '{cmd}'".format(cmd=args[1]))
